@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import static edu.ti.caih313.collections.dataobj.EmailAddress.Type.SCHOOL;
+import static edu.ti.caih313.collections.dataobj.EmailAddress.Type.*;
 
 public class EmailAddress {
     private String email;
@@ -15,7 +15,7 @@ public class EmailAddress {
     public EmailAddress(String email, Type type){
         this.email = email;
         this.type = type;
-        emailMap.put(type, email);
+
     }
 
     public Map<Type, String> getEmailMap(){
@@ -24,11 +24,24 @@ public class EmailAddress {
     public Type getType(){
         return type;
     }
-    public String getEmail(){
+    public String getEmailString(){
         return email;
     }
-    public String primaryEmailAddress(){
-        return type.toString();//TODO return null
+    public static String primaryEmailAddress(Person person){
+        String primaryEmail = "";
+        if (person.getEmail() == null){
+            primaryEmail = null;
+        }
+        else if (person.getEmail().getEmailMap().containsKey(HOME)){
+            primaryEmail =  person.getEmail().getEmailMap().get(HOME);
+        }
+        else if(person.getEmail().getEmailMap().containsKey(WORK)){
+            primaryEmail = person.getEmail().getEmailMap().get(WORK);
+        }
+        else if(person.getEmail().getEmailMap().containsKey(SCHOOL)){
+            primaryEmail =  person.getEmail().getEmailMap().get(SCHOOL);
+        }
+        return primaryEmail;
     }
 
 

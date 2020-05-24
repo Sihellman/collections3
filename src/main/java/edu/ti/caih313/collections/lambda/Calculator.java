@@ -20,12 +20,12 @@ public class Calculator {
             myApp.operateBinary(20, 10, subtraction));
         System.out.println("2 * 3 = " +
                 myApp.operateBinary(2, 3, multiplication));
-        System.out.println("2 / 2 = " + myApp.operateBinary(2, 2, division));//TODO the /
+        System.out.println("2 / 2 = " + myApp.operateBinary(2, 2, division));
         System.out.println("1.1 + 1.1 = " + myApp.doubleOperate(1.1, 1.1, doubleAdd));
         System.out.println("2.2 - 1.1 = " + myApp.doubleOperate(2.2, 1.1, doubleMinus));
         System.out.println("2.2 * 3 = " + myApp.doubleOperate(2.2, 3, doubleTimes));
         System.out.println("2.2 / 1 = " + myApp.doubleOperate(2.2, 1, doubleDivide));
-        System.out.println("|-1| = " + myApp.unary(-1, abs));//TODO read up
+        System.out.println("|-1| = " + myApp.unary(-1, abs));
         System.out.println("|1| = " + myApp.unary(1, abs));
         System.out.println("inverse of 2 = " + myApp.unary(2, invert));
     }
@@ -36,7 +36,6 @@ public class Calculator {
     private double doubleOperate(double a, double b, DoubleMath doubleMath){
         return doubleMath.operation(a, b);
     }
-    //TODO change variable names
     private double unary(double a, UnaryDoubleMath unaryDoubleMath){
         return unaryDoubleMath.operation(a);
     }

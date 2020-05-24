@@ -14,7 +14,7 @@ public class Person {
 
 
 
-    //private EmailAddress emailAddress;
+
 
     //age in years
     //TODO -- replace by Date birthday, and getAge that calculates age
@@ -22,13 +22,7 @@ public class Person {
 
     public enum Gender {MALE, FEMALE}
 
-    public Person(Name name, Gender gender, Integer age, String emailString, EmailAddress.Type type) {
-        this.name = name;
-        this.gender = gender;
-        this.age = age;
-        email = new EmailAddress(emailString, type);
 
-    }
     public Person(Name name, Gender gender, Integer age){
         this.name = name;
         this.gender = gender;
@@ -37,12 +31,36 @@ public class Person {
 
 
 
-    public void addOrReplaceEmail(String email, EmailAddress.Type type){
-          new Person(getName(), getGender(), getAge(), email, type);
+    public void addOrReplaceEmail( String email, EmailAddress.Type type){
+        if (getEmail() == null){
+            this.email = new EmailAddress(email, type);
+        }
+        this.email.getEmailMap().put(type, email);
     }
 
     public EmailAddress getEmail(){
+        if (email == null){
+            email = null;
+
+        }
         return email;
+    }
+
+    public int getSize(){
+        int size;
+        if (getEmail() == null){
+            size = 0;
+        }
+        else if(getEmail().getEmailMap().size() == 1){
+            size = 1;
+        }
+        else if(getEmail().getEmailMap().size() == 2){
+            size = 2;
+        }
+        else{
+            size = 3;
+        }
+        return size;
     }
 
     public Name getName() {
@@ -64,11 +82,12 @@ public class Person {
 
 
     @Override
-    public String toString() {//TODO add email
+    public String toString() {
         return "Person{" +
                 "name=" + name +
                 ", gender=" + gender +
-                ", age=" + age
-                + "}";
+                ", age=" + age +
+                ", email=" + email +
+                "}";
     }
 }
